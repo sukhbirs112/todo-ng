@@ -8,19 +8,28 @@ import { LoginComponent } from './login/login.component';
 import { IntroComponent } from './intro/intro.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { FormsModule } from '@angular/forms';
+import { FlashbarComponent } from './flashbar/flashbar.component';
+
+import { httpInterceptorProviders } from './http-interceptor/index';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     IntroComponent,
-    SignupComponent
+    SignupComponent,
+    FlashbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

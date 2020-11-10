@@ -1,9 +1,31 @@
 
+div.login-outer-container {
+	position: relative;
+	height: 200px;
+}
+
+div.login-container {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%,0%);
+	border: 1px solid lightgrey;
+	box-shadow: 2px 2px rgba(203, 206, 212, 0.7);
+	margin: 0px;
+	width: 25%;
+	padding: 20px;
+	min-width: 400px;
+}
+
+div.login-container h2 {
+	padding: 5px;
+
+}
+
 form {
 	display: block;
-	margin: 10px;
-	padding: 10px;
-	border-spacing: 10px;
+	padding: 5px;
+	border-spacing: 20px;
+
 }
 
 fieldset {
@@ -18,6 +40,10 @@ form p {
 
 form input, form label {
 	display: table-cell;
+}
+
+form input {
+	color: black;
 }
 
 form label {
@@ -39,4 +65,9 @@ button:hover {
 	color: white;
 	background-color: #1a75ff;
 	cursor: pointer;
+}
+
+a {
+	display: inline-block;
+	margin: 10px;
 }

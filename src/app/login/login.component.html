@@ -1,19 +1,24 @@
-<h2>Login</h2> 
-<form>
-	<fieldset>
-		<p>
-			<label for="username">Username</label>
-			<input type="text" id="username" name="username">
-		</p>
-		<p>
-			<label for="password">Password</label>
-			<input type="password" id="password" name="password">	
-		</p>
-	</fieldset>
-	<button>Login</button>
-</form>
+<div class="login-outer-container">
+	<div class="login-container">
+		<h2>Login, and get to work =)</h2>
+		<form>
+			<fieldset>
+				<p>
+					<label for="username">Username</label>
+					<input [(ngModel)]="credentials.username" name="username">
+				</p>
+				<p>
+					<label for="password">Password</label>
+					<input type="password" [(ngModel)]="credentials.password" name="password">
+				</p>
+			</fieldset>
+			<button type="button" (click)="onButtonClick()">Login</button>
+		</form>
+		<app-flashbar [message]="message">
+		</app-flashbar>
 
-<div>
-	<a href="/signup">Don't have an account? Sign up here.</a>
+		<div>
+			<a href="signup">Don't have an account? Sign up here.</a>
+		</div>
+	</div>
 </div>
-

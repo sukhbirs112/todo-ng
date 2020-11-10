@@ -4,13 +4,13 @@
 /* Global Text Color and font */
 
 * {
-	color:#1a75ff;
-	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+	color:#103874;
+	font-family: Arial, Helvetica,sans-serif;
 }
 
 a {
 	border: 1px solid lightgrey;
-	padding:5px;
+	padding: 5px;
 	font-weight: bold;
 	text-decoration: none;
 	margin: 10px;
