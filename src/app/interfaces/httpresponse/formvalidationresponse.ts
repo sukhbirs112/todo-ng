@@ -1,6 +1,5 @@
 // Basic Form Interface for use when interpreting the server response after submitting a form
 export interface FormValidationResponse {
     success: boolean,
-    em: string,
-    ec: string,
+    msg: string
 }

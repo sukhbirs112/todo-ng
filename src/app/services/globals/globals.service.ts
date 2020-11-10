@@ -4,13 +4,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GlobalsService {
-  
-  apiUrlPrefix:string = 'http://localhost:8080/api';
 
-  loginUrl:string = 'http://localhost:8080/login';
 
-  csrfUrl:string = 'http://localhost:8080/api/csrf'
+  host: string;
 
-  constructor() { 
+  apiUrlPrefix: string;
+
+  loginUrl: string;
+
+  csrfUrl: string;
+
+  appUrl: string;
+
+  constructor() {
+    let host = 'http://localhost:8080';
+    this.host = host;
+    this.loginUrl = host + '/login';
+    this.appUrl = host + '/todo';
+
+    this.apiUrlPrefix = host + '/api';
+    this.csrfUrl = this.apiUrlPrefix + '/csrf';
+
   }
 }

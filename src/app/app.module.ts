@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { FlashbarComponent } from './flashbar/flashbar.component';
 
 import { httpInterceptorProviders } from './http-interceptor/index';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { httpInterceptorProviders } from './http-interceptor/index';
     LoginComponent,
     IntroComponent,
     SignupComponent,
-    FlashbarComponent
+    FlashbarComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

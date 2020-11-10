@@ -5,7 +5,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { GlobalsService } from '../services/globals/globals.service';
 import { CsrfService } from '../services/csrf/csrf.service';
-import { Csrf } from '../interfaces/csrf/csrf';
 import { FormValidationResponse } from '../interfaces/httpresponse/formvalidationresponse';
 
 
@@ -62,7 +61,7 @@ export class SignupComponent implements OnInit {
       else {
         // modify flash bar
         console.log('failure');
-        this.message = res.em;
+        this.message = res.msg;
       }
     });
   }
