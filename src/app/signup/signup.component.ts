@@ -5,8 +5,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GlobalsService } from '../services/globals/globals.service';
 import { CsrfService } from '../services/csrf/csrf.service';
-import { FormValidationResponse } from '../interfaces/httpresponse/formvalidationresponse';
-
+import { ServerResponse as ServerResponse} from '../interfaces/server-response/server-response';
 
 import { Observable } from 'rxjs';
 
@@ -41,14 +40,14 @@ export class SignupComponent implements OnInit {
     this.csrf.loadCSRF();
   }
 
-  submitSignupForm(): Observable<FormValidationResponse> {
-    return this.http.post<FormValidationResponse>(`${this.globals.apiUrlPrefix}/signup`, this.credentials);
+  submitSignupForm(): Observable<ServerResponse> {
+    return this.http.post<ServerResponse>(`${this.globals.apiUrl}/signup`, this.credentials);
   }
 
   onButtonClick(): void {
     console.log('On Submit');
     console.log(`${this.credentials.username} ${this.credentials.password}`);
-    this.submitSignupForm().subscribe((res: FormValidationResponse) => {
+    this.submitSignupForm().subscribe((res: ServerResponse) => {
       console.log(res);
       if (res.success) {
         // Redirect to login page

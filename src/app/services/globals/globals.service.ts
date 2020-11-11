@@ -8,7 +8,7 @@ export class GlobalsService {
 
   host: string;
 
-  apiUrlPrefix: string;
+  apiUrl: string;
 
   loginUrl: string;
 
@@ -22,8 +22,8 @@ export class GlobalsService {
     this.loginUrl = host + '/login';
     this.appUrl = host + '/todo';
 
-    this.apiUrlPrefix = host + '/api';
-    this.csrfUrl = this.apiUrlPrefix + '/csrf';
+    this.apiUrl = host + '/api';
+    this.csrfUrl = this.apiUrl + '/csrf';
 
   }
 }

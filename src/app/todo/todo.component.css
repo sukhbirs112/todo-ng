@@ -1,0 +1,16 @@
+
+.topbar {
+    display: flex;
+}
+
+.topbar-username {
+    width: 100px;
+}
+
+.topbar-spacer {
+    flex: 1;
+}
+
+.topbar-logout {
+    width: 100px;
+}

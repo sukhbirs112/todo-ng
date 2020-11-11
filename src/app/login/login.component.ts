@@ -7,9 +7,10 @@ import { TestBed } from '@angular/core/testing';
 
 import { GlobalsService } from '../services/globals/globals.service';
 import { CsrfService } from '../services/csrf/csrf.service';
-import { FormValidationResponse } from '../interfaces/httpresponse/formvalidationresponse';
+import { ServerResponse } from '../interfaces/server-response/server-response';
 
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -40,20 +41,20 @@ export class LoginComponent implements OnInit {
     this.csrf.loadCSRF();
   }
 
-  submitLoginForm(): Observable<FormValidationResponse> {
-    return this.http.post<FormValidationResponse>(`${this.globals.apiUrlPrefix}/login`, this.credentials);
+  submitLoginForm(): Observable<ServerResponse> {
+    return this.http.post<ServerResponse>(`${this.globals.apiUrl}/login`, this.credentials);
   }
 
   onButtonClick() {
     console.log('On Submit');
     console.log(`${this.credentials.username} ${this.credentials.password}`);
-    this.submitLoginForm().subscribe((res: FormValidationResponse) => {
+    this.submitLoginForm().subscribe((res: ServerResponse) => {
       console.log(res);
       if (res.success) {
         // Redirect to app home
         console.log('success');
         this.message = `Logging In.`;
-       // window.location.href = this.globals.appUrl;
+       window.location.href = this.globals.appUrl;
       }
       else {
         // modify flash bar
