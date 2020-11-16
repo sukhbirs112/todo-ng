@@ -31,8 +31,4 @@ export class CsrfService {
     return this.csrfToken;
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req);
-  }
-
 }

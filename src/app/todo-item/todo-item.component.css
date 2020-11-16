@@ -1,0 +1,99 @@
+
+
+.outer-todoitem-container {
+    height: 400px;
+    width: 600px;
+    border: 1px solid rgba(203, 206, 212, 0.7);
+    box-shadow: 2px 2px rgba(203, 206, 212, 0.7);
+    color: black;
+    margin-bottom: 15px;
+}
+
+.inner-todoitem-container {
+    
+    width: 560px;
+    height: 340px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.date-section {
+    display: flex;
+}
+
+.date-section .date-spacer {
+    flex:1
+}
+
+.date-section .todoitem-date {
+    display: inline-block;
+    color: black;
+    font-size: 14px;
+
+}
+
+.title-section {
+    border: 1px solid lightgrey;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+
+.title-section, .description-section, .date-section {
+    width : 520px;
+    padding: 5px;
+}
+
+.title-section div {
+    color: black;
+}
+
+.description-section div {
+    color: black;
+    max-height: 215px;
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+.title-section input {
+    font-size: 24px;
+    width : 515px;
+    border: none;
+    color: black;
+}
+
+.description-section textarea {
+    font-size: 16px;
+    height: 200px;
+    width: 505px;
+    color: black;
+    border: none; 
+    resize: none;
+}
+
+.description-section {
+    
+    min-height: 32px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: black;
+}
+
+button {
+	border: 1px solid lightgrey;
+	background-color: white;
+	padding:5px;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 10px;
+	box-shadow: 2px 2px rgba(203, 206, 212, 0.7);
+}
+
+button:hover {
+	color: white;
+	background-color: #1a75ff;
+	cursor: pointer;
+}

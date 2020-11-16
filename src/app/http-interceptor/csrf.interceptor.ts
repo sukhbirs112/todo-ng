@@ -27,6 +27,5 @@ export class CsrfInterceptor implements HttpInterceptor {
       const csrfInRequest = request.clone({ setHeaders: { 'csrf-token': csrfToken, 'X-Requested-With': 'XMLHttpRequest' } });
       return next.handle(csrfInRequest);
     }
-
   }
 }

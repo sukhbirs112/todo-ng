@@ -13,6 +13,7 @@ import { FlashbarComponent } from './flashbar/flashbar.component';
 
 import { httpInterceptorProviders } from './http-interceptor/index';
 import { TodoComponent } from './todo/todo.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TodoComponent } from './todo/todo.component';
     IntroComponent,
     SignupComponent,
     FlashbarComponent,
-    TodoComponent
+    TodoComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,22 @@
 <div class="topbar">
-    <div class="topbar-username">{{ username }}</div>
+    <div class="topbar-username">Welcome {{ username }}</div>
     <div class="topbar-spacer"></div>
     <div class="topbar-logout">
         <a href="/logout">Logout</a>
+    </div>
+</div>
+<div *ngIf="!addingNewTodoItem" class="circle-btn-shadow">
+    <div class="circle-btn-container" (click)="addTodoItem()">
+        <div>+</div>
+    </div>
+</div>
+
+
+<div class="outer-todoitem-container">
+    <div class="inner-todoitem-container">
+        
+        <app-todo-item *ngIf="addingNewTodoItem" [editMode]="addingNewTodoItem" (saveClicked)="onSave($event)" (cancelClicked)="onCancel($event)" [(todoItem)]="newTodoItem"></app-todo-item>
+        
+        <app-todo-item *ngFor="let todoItem of todoItems; let i = index;" (saveClicked)="onSave($event)" [(todoItem)]="todoItems[i]"></app-todo-item>
     </div>
 </div>

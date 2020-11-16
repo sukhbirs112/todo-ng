@@ -1,0 +1,29 @@
+<div class="outer-todoitem-container">
+    <div class="inner-todoitem-container">
+        <div class="date-section">
+            <div class="date-spacer"></div>
+            <div class="todoitem-date">{{formTodoItem.datecreated | date:'hh:mm' }} {{formTodoItem.datecreated | date:'a' | lowercase }} {{formTodoItem.datecreated | date:'EEE, MMM d, yyyy' }}</div>
+        </div>
+        <div class="title-section">
+            <div *ngIf="editMode">
+                <input name="title" [(ngModel)]="formTodoItem.title">
+            </div>
+            <div *ngIf="!editMode">
+                {{formTodoItem.title}}
+            </div>
+        </div>
+        <div class="description-section">
+            <div *ngIf="editMode">
+                <!--  <input name="description" [(ngModel)]="todoItem.description"> -->
+                <textarea name="description" [(ngModel)]="formTodoItem.description"></textarea>
+            </div>
+            <div *ngIf="!editMode">
+                {{formTodoItem.description}}
+            </div>
+        </div>
+        <div class="button-section">
+            <button (click)="onEditOrCancel()">{{ editCancelBtnText }}</button>
+            <button (click)="onDeleteOrSave()">{{ deleteSaveBtnText }}</button>
+        </div>
+    </div>
+</div>

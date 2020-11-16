@@ -16,6 +16,8 @@ export class GlobalsService {
 
   appUrl: string;
 
+  todoItemsUrl: string
+
   constructor() {
     let host = 'http://localhost:8080';
     this.host = host;
@@ -24,6 +26,7 @@ export class GlobalsService {
 
     this.apiUrl = host + '/api';
     this.csrfUrl = this.apiUrl + '/csrf';
+    this.todoItemsUrl = this.apiUrl + '/todo';
 
   }
 }
