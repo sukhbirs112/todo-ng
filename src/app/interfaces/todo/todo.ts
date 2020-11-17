@@ -11,7 +11,14 @@ export interface TodoItemUserInputToAdd {
     complete: boolean
 }
 
-export interface TodoItemUserInputToUpdate extends TodoItemUserInputToAdd {
+export interface TodoItemUserInputToUpdate {
+    id: number,
+    title: string
+    description: string,
+    complete: boolean
+}
+
+export interface TodoItemUserInputDelete {
     id: number
 }
 

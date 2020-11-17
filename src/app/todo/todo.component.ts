@@ -108,8 +108,16 @@ export class TodoComponent implements OnInit {
     }
   }
 
+  onDelete(event: number): void {
+    this.todo.deleteTodoItem(event, (res: any) => {
+      if (res.success) {
+        //this.todoItems = this.todo.getTodoItems();
+      }
+    })
+  }
+
   onCancel(event: number): void {
-    
+
     if (event === null) {
       this.addingNewTodoItem = false;
       this.resetNewTodoItem();

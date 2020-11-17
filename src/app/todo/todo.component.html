@@ -17,6 +17,6 @@
         
         <app-todo-item *ngIf="addingNewTodoItem" [editMode]="addingNewTodoItem" (saveClicked)="onSave($event)" (cancelClicked)="onCancel($event)" [(todoItem)]="newTodoItem"></app-todo-item>
         
-        <app-todo-item *ngFor="let todoItem of todoItems; let i = index;" (saveClicked)="onSave($event)" [(todoItem)]="todoItems[i]"></app-todo-item>
+        <app-todo-item *ngFor="let todoItem of todoItems; let i = index;" (saveClicked)="onSave($event)" (deleteClicked)="onDelete($event)" [(todoItem)]="todoItems[i]"></app-todo-item>
     </div>
 </div>

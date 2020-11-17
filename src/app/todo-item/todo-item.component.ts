@@ -11,17 +11,17 @@ import { TodoService } from '../services/todo/todo.service';
 })
 export class TodoItemComponent implements OnInit {
 
- 
+
   @Input()
   get todoItem(): TodoItem {
     return this._todoItem;
-  }; 
+  };
   set todoItem(todoItem: TodoItem) {
     this._todoItem = todoItem;
     this._formTodoItem = this.todo.cloneTodoItem(todoItem);
   }
 
-  
+
 
   private _todoItem: TodoItem;
 
@@ -38,7 +38,7 @@ export class TodoItemComponent implements OnInit {
 
   // Edit Mode
   private _editMode: boolean = false;
-  
+
 
   @Input()
   get editMode(): boolean { return this._editMode }
@@ -54,6 +54,7 @@ export class TodoItemComponent implements OnInit {
 
   @Output() saveClicked = new EventEmitter<TodoItem>();
   @Output() cancelClicked = new EventEmitter<number>();
+  @Output() deleteClicked = new EventEmitter<number>();
 
   ngOnInit(): void {
   }
@@ -63,6 +64,10 @@ export class TodoItemComponent implements OnInit {
     // perform operation based on state of editMode
     console.log('onDeleteOrSave')
     if (this.editMode) {
+      // Validate form
+      if (! this._formTodoItem.title) {
+        return ;
+      }
       // Save Item
       this.exitEditMode();
       console.log('save');
@@ -70,6 +75,7 @@ export class TodoItemComponent implements OnInit {
     }
     else {
       // Delete Item
+      this.deleteClicked.emit(this._formTodoItem.id);
       console.log('Delete');
     }
 
@@ -80,7 +86,7 @@ export class TodoItemComponent implements OnInit {
     if (this.editMode) {
       this.exitEditMode();
       this.cancelClicked.emit(this._todoItem.id);
-      if (this.todoItem.id === null) {  
+      if (this.todoItem.id === null) {
       }
       else {
         this._formTodoItem = this.todo.cloneTodoItem(this._todoItem);

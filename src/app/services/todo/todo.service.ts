@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ServerResponse } from '../../interfaces/server-response/server-response';
-import { TodoUser, TodoItemUserInputToAdd, TodoItemUserInputToUpdate, TodoItem } from '../../interfaces/todo/todo'
+import { TodoUser, TodoItemUserInputToAdd, TodoItemUserInputToUpdate, TodoItemUserInputDelete, TodoItem } from '../../interfaces/todo/todo'
 import { GlobalsService } from '../globals/globals.service';
 
 import { HttpClient } from '@angular/common/http';
@@ -34,7 +34,12 @@ export class TodoService {
 
   getTodoItems(): TodoItem[] {
     // returns clone of TodoItems
-    return this.todoItems.map((tI)=>{
+    return this.todoItems;
+  }
+
+  getTodoItemsClone(): TodoItem[] {
+    // returns clone of TodoItems
+    return this.todoItems.map((tI) => {
       return this.cloneTodoItem(tI);
     });
   }
@@ -86,6 +91,21 @@ export class TodoService {
         itemToUpdate.title = todoItem.title;
         itemToUpdate.description = todoItem.description;
         itemToUpdate.complete = todoItem.complete;
+      }
+      cb(res);
+    });
+  }
+
+  deleteTodoItem(id: number, cb: (res: any) => void): void {
+    const postData: TodoItemUserInputDelete = {
+      id: id
+    };
+    this.http.post<any>(`${this.globals.todoItemsUrl}/delete`, postData).subscribe((res: any) => {
+      if (res.success) {
+        const index = this.todoItems.findIndex((tI) => {
+          return tI.id == id;
+        });
+        this.todoItems.splice(index, 1);
       }
       cb(res);
     });
