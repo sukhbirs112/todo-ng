@@ -1,0 +1,19 @@
+
+.fixed-parent {
+    position: fixed;
+    height: 0px;
+    width: 100%;
+    z-index: 1;
+}
+
+.animated-flashbar-container {
+    position: relative;
+    width: 100%;
+}
+
+.flashbar-container {
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%,0)
+}

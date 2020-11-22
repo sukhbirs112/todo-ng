@@ -1,0 +1,7 @@
+<div class="fixed-parent">
+    <div *ngIf="message" [@flashBar]="animationStage" (@flashBar.done)="onAnimationEvent($event)" class="animated-flashbar-container">
+        <div class="flashbar-container">
+            <app-flashbar [message]="message"></app-flashbar>
+        </div>
+    </div>
+</div>

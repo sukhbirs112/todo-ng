@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { GlobalsService } from '../services/globals/globals.service';
@@ -8,7 +8,8 @@ import { TodoService } from '../services/todo/todo.service';
 
 import { Observable } from 'rxjs';
 import { TodoUser, TodoItem } from '../interfaces/todo/todo'
-//import { ServerResponse } from '../interfaces/server-response/server-response';
+
+import{ FloatingFlashbarComponent } from '../floating-flashbar/floating-flashbar.component';
 
 @Component({
   selector: 'app-todo',
@@ -26,6 +27,11 @@ export class TodoComponent implements OnInit {
   username: string;
 
   todoItems: TodoItem[] = [];
+
+  // message used for floating message after operations
+  
+  @ViewChild(FloatingFlashbarComponent)
+  private floatingFlashbar : FloatingFlashbarComponent;
 
   // used for adding a new TodoItem
   newTodoItem: TodoItem;
@@ -96,12 +102,14 @@ export class TodoComponent implements OnInit {
           this.addingNewTodoItem = false;
           // reset new todo item
           this.resetNewTodoItem();
+          this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
         }
       });
     }
     else {
       this.todo.updateTodoItem(event, (res: any) => {
         if (res.success) {
+          this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
           console.log('Updated');
         }
       });

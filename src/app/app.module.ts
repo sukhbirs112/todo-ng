@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+// animation
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,7 @@ import { FlashbarComponent } from './flashbar/flashbar.component';
 import { httpInterceptorProviders } from './http-interceptor/index';
 import { TodoComponent } from './todo/todo.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { FloatingFlashbarComponent } from './floating-flashbar/floating-flashbar.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,12 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
     SignupComponent,
     FlashbarComponent,
     TodoComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    FloatingFlashbarComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
