@@ -104,6 +104,9 @@ export class TodoComponent implements OnInit {
           this.resetNewTodoItem();
           this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
           }
+          else {
+            this.floatingFlashbar.pushMessage(`Failed To Save: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
+          }
       });
     }
     else {
@@ -112,14 +115,21 @@ export class TodoComponent implements OnInit {
           this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
           console.log('Updated');
         }
+        else {
+          this.floatingFlashbar.pushMessage(`Failed To Save: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
+        }
       });
     }
   }
 
   onDelete(event: number): void {
-    this.todo.deleteTodoItem(event, (res: any) => {
+    this.todo.deleteTodoItem(event, (res: any, todoItem: TodoItem) => {
       if (res.success) {
         //this.todoItems = this.todo.getTodoItems();
+        this.floatingFlashbar.pushMessage(`Successfully Deleted: ${ todoItem.title.length > 20 ? todoItem.title.slice(20) + '...' : todoItem.title}`);
+      }
+      else {
+        this.floatingFlashbar.pushMessage(`Failed To Delete: ${ todoItem.title.length > 20 ? todoItem.title.slice(20) + '...' : todoItem.title}`);
       }
     })
   }

@@ -96,18 +96,19 @@ export class TodoService {
     });
   }
 
-  deleteTodoItem(id: number, cb: (res: any) => void): void {
+  deleteTodoItem(id: number, cb: (res: any, item: TodoItem) => void): void {
     const postData: TodoItemUserInputDelete = {
       id: id
     };
     this.http.post<any>(`${this.globals.todoItemsUrl}/delete`, postData).subscribe((res: any) => {
+      const index = this.todoItems.findIndex((tI) => {
+        return tI.id === id;
+      });
+      const item = this.todoItems[index];
       if (res.success) {
-        const index = this.todoItems.findIndex((tI) => {
-          return tI.id == id;
-        });
         this.todoItems.splice(index, 1);
       }
-      cb(res);
+      cb(res, item);
     });
   }
 
