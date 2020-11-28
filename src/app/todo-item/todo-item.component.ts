@@ -30,10 +30,6 @@ export class TodoItemComponent implements OnInit {
   }
   private _formTodoItem: TodoItem;
 
-  editCancelBtnText: string = 'Edit';
-
-  deleteSaveBtnText: string = 'Delete';
-
   constructor(private todo: TodoService) { }
 
   // Edit Mode
@@ -59,10 +55,8 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDeleteOrSave(): void {
-
+  onDeleteOrSave(event: Event): void {
     // perform operation based on state of editMode
-    console.log('onDeleteOrSave')
     if (this.editMode) {
       // Validate form
       if (! this._formTodoItem.title) {
@@ -70,13 +64,11 @@ export class TodoItemComponent implements OnInit {
       }
       // Save Item
       this.exitEditMode();
-      console.log('save');
       this.saveClicked.emit(this._formTodoItem);
     }
     else {
       // Delete Item
       this.deleteClicked.emit(this._formTodoItem.id);
-      console.log('Delete');
     }
 
   }
@@ -101,14 +93,11 @@ export class TodoItemComponent implements OnInit {
 
   enterEditMode(): void {
     this._editMode = true;
-    this.editCancelBtnText = 'Cancel';
-    this.deleteSaveBtnText = 'Save';
+
   }
 
   exitEditMode(): void {
     this._editMode = false;
-    this.editCancelBtnText = 'Edit';
-    this.deleteSaveBtnText = 'Delete';
   }
 
 }

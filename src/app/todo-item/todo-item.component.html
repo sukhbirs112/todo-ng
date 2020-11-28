@@ -21,9 +21,13 @@
                 {{formTodoItem.description}}
             </div>
         </div>
-        <div class="button-section">
-            <button (click)="onEditOrCancel()">{{ editCancelBtnText }}</button>
-            <button (click)="onDeleteOrSave()">{{ deleteSaveBtnText }}</button>
+        <div class="button-section" *ngIf="editMode">
+            <button (click)="onEditOrCancel($event)">Cancel</button>
+            <button (click)="onDeleteOrSave($event)">Save</button>
+        </div>
+        <div class="button-section" *ngIf="!editMode">
+            <button (click)="onEditOrCancel($event)">Edit</button>
+            <button (click)="onDeleteOrSave($event)">Delete</button>
         </div>
     </div>
 </div>

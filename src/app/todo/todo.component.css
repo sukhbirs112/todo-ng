@@ -77,3 +77,9 @@
     color: white;
 }
 
+
+.todoitems-container {
+    max-height: 725px;
+    display: inline-block;
+    overflow-y: auto;
+}
