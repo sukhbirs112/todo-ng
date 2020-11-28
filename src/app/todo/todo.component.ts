@@ -103,7 +103,7 @@ export class TodoComponent implements OnInit {
           // reset new todo item
           this.resetNewTodoItem();
           this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
-        }
+          }
       });
     }
     else {

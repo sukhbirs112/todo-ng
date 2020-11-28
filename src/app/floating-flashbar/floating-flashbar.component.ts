@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ElementRef } from '@angular/core';
 
 // animation
 import {
@@ -21,8 +21,8 @@ import {
   animations: [
     trigger('flashBar', [
       state('hidden', style({
-        top: '-200px'
-      })),
+        top: '-{{ offset }}px'
+      }), { params: { offset: 0 } }),
       state('shown', style({
         top: '0px'
       })),
@@ -32,9 +32,10 @@ import {
   ]
 
 })
-export class FloatingFlashbarComponent implements OnInit {
+export class FloatingFlashbarComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private myElement: ElementRef) { 
+  }
 
 
 
@@ -46,10 +47,35 @@ export class FloatingFlashbarComponent implements OnInit {
 
   animationStage: string = ''
 
-  messages: string [] = [];
+  offset: number;
+
+  messages: string[] = [];
 
   ngOnInit(): void {
 
+  }
+
+  ngAfterViewInit() {
+    if (!this.id) {
+      return;
+    }
+    this.offset = this.calculateOffset();
+  }
+
+  calculateOffset(message: string = ''): number {
+    // count number of new line characters to see how many lines there are in the message
+    let lines = 1;
+    const n = message.length;
+    for (let i = 0; i < n; i++ ) {
+      if (message.charAt(i) === '\n') {
+        lines++;
+      }
+    }
+
+    const fontSize = 16;
+    const margin = 20 * 2;
+    const padding = 10 * 2;
+    return this.myElement.nativeElement.getBoundingClientRect().top + margin + padding + (fontSize * lines);
   }
 
   pushMessage(msg: string): void {
@@ -62,11 +88,12 @@ export class FloatingFlashbarComponent implements OnInit {
     console.log(this.messages.length);
     if (this.message.length === 0) {
       this.message = this.messages[0];
+      this.offset = this.calculateOffset(this.message);
       this.animationStage = 'hidden';
-    }    
+    }
   }
 
-  //
+  // controller for animation events
   onAnimationEvent(event: AnimationEvent): void {
     console.log('animation event');
     console.log(event);
@@ -81,16 +108,17 @@ export class FloatingFlashbarComponent implements OnInit {
       this.messages.shift();
       this.animationStage = '';
       this.message = '';
-  }
-  else if (event.fromState === 'hidden' && event.toState === 'void' && event.phaseName === 'done') {
-    console.log('yoyo')
-    console.log(`remaining messages: ${this.messages.length}`);
-    if (this.messages.length > 0) {
-      console.log('doing more');
-      this.message = this.messages[0];
-      console.log(`now doing message: ${this.message}`);
-      this.animationStage = 'hidden';
     }
-  }
+    else if (event.fromState === 'hidden' && event.toState === 'void' && event.phaseName === 'done') {
+      console.log('yoyo')
+      console.log(`remaining messages: ${this.messages.length}`);
+      if (this.messages.length > 0) {
+        console.log('doing more');
+        this.message = this.messages[0];
+        this.offset = this.calculateOffset(this.message);
+        console.log(`now doing message: ${this.message}`);
+        this.animationStage = 'hidden';
+      }
+    }
   }
 }
