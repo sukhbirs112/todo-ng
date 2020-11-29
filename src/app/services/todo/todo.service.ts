@@ -55,7 +55,6 @@ export class TodoService {
   }
 
   addTodoItem(todoItem: TodoItem, cb: (res: any) => void): void {
-    console.log('Service addTodoItem');
     const postData: TodoItemUserInputToAdd = {
       title: todoItem.title,
       description: todoItem.description,
@@ -78,7 +77,6 @@ export class TodoService {
 
 
   updateTodoItem(todoItem: TodoItem, cb: (res: any) => void): void {
-    console.log('Service updateTodoItem');
     const postData: TodoItemUserInputToUpdate = {
       id: todoItem.id,
       title: todoItem.title,

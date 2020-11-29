@@ -19,13 +19,14 @@
 
 .circle-btn-shadow {
     border: 1px solid transparent;
-   
     border-radius: 32px;
     padding: 0px;
     position: relative;
     height: 66px;
     width: 66px;
     transition: border 0.3s;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .circle-btn-container {

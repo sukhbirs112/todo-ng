@@ -46,19 +46,14 @@ export class LoginComponent implements OnInit {
   }
 
   onButtonClick() {
-    console.log('On Submit');
-    console.log(`${this.credentials.username} ${this.credentials.password}`);
     this.submitLoginForm().subscribe((res: ServerResponse) => {
-      console.log(res);
       if (res.success) {
         // Redirect to app home
-        console.log('success');
         this.message = `Logging In.`;
        window.location.href = this.globals.appUrl;
       }
       else {
         // modify flash bar
-        console.log('failure');
         this.message = res.msg;
       }
     });

@@ -7,8 +7,13 @@
     </div>
 </div>
 <div *ngIf="!addingNewTodoItem" class="circle-btn-shadow">
-    <div class="circle-btn-container" (click)="addTodoItem()">
-        <div>+</div>
+    <div class="circle-btn-container" (click)="openNewTodoItemForm()">
+        <div>&#x2b;</div>
+    </div>
+</div>
+<div *ngIf="addingNewTodoItem" class="circle-btn-shadow">
+    <div class="circle-btn-container" (click)="closeNewTodoItemForm()">
+        <div>&#x2212;</div>
     </div>
 </div>
 <div class="todoitems-container">

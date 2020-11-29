@@ -16,14 +16,13 @@ export class CsrfInterceptor implements HttpInterceptor {
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(request);
     let excludeCsrf: boolean = request && request.body && request.body.excludeCsrf;
+    // Set header X-Requested-With to XMLHttpRequest. This tells an express server backend that the request is AJAX
     if (request.method == 'GET' || excludeCsrf) {
       return next.handle(request.clone({ setHeaders: { 'X-Requested-With': 'XMLHttpRequest' } }));
     }
     else if (request.method == 'POST') {
       let csrfToken: string = this.csrf.getCSRF();
-      console.log(`intercept ${csrfToken}`);
       const csrfInRequest = request.clone({ setHeaders: { 'csrf-token': csrfToken, 'X-Requested-With': 'XMLHttpRequest' } });
       return next.handle(csrfInRequest);
     }

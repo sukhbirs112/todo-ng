@@ -83,9 +83,6 @@ export class FloatingFlashbarComponent implements OnInit, AfterViewInit {
       return;
     }
     this.messages.push(msg);
-    console.log('messages');
-    console.log(this.messages);
-    console.log(this.messages.length);
     if (this.message.length === 0) {
       this.message = this.messages[0];
       this.offset = this.calculateOffset(this.message);
@@ -95,8 +92,6 @@ export class FloatingFlashbarComponent implements OnInit, AfterViewInit {
 
   // controller for animation events
   onAnimationEvent(event: AnimationEvent): void {
-    console.log('animation event');
-    console.log(event);
     if (event.fromState === 'void' && event.toState === 'hidden' && event.phaseName === 'done') {
       this.animationStage = 'shown';
     }
@@ -104,19 +99,14 @@ export class FloatingFlashbarComponent implements OnInit, AfterViewInit {
       setTimeout(() => { this.animationStage = 'hidden'; }, 3000)
     }
     else if (event.fromState === 'shown' && event.toState === 'hidden' && event.phaseName === 'done') {
-      console.log('shift');
       this.messages.shift();
       this.animationStage = '';
       this.message = '';
     }
     else if (event.fromState === 'hidden' && event.toState === 'void' && event.phaseName === 'done') {
-      console.log('yoyo')
-      console.log(`remaining messages: ${this.messages.length}`);
       if (this.messages.length > 0) {
-        console.log('doing more');
         this.message = this.messages[0];
         this.offset = this.calculateOffset(this.message);
-        console.log(`now doing message: ${this.message}`);
         this.animationStage = 'hidden';
       }
     }

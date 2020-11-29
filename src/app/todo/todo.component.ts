@@ -77,29 +77,25 @@ export class TodoComponent implements OnInit {
   loadTodoItems(): void {
     this.todo.loadTodoItems((res: any) => {
       this.todoItems = this.todo.getTodoItems();
-      console.log(res);
-      console.log(this.todoItems);
     });
   }
 
-  // Handle click event for add new todo item button
-  addTodoItem(): void {
-    console.log('Add todo item');
+  // Handle click event for adding new todoItem, or cancel add
+  openNewTodoItemForm(): void {
     this.addingNewTodoItem = true;
   }
 
+  closeNewTodoItemForm(): void {
+    this.addingNewTodoItem = false;
+  }
 
   // This event is triggered by child todo-item component save click.
   onSave(event: TodoItem): void {
-
-    console.log(event);
-
     if (event.id === null) {
       // add new todo item
       this.todo.addTodoItem(event, (res: any) => {
-        console.log(res);
         if (res.success) {
-          this.addingNewTodoItem = false;
+          this.closeNewTodoItemForm();
           // reset new todo item
           this.resetNewTodoItem();
           this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
@@ -113,7 +109,6 @@ export class TodoComponent implements OnInit {
       this.todo.updateTodoItem(event, (res: any) => {
         if (res.success) {
           this.floatingFlashbar.pushMessage(`Successfully Saved: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
-          console.log('Updated');
         }
         else {
           this.floatingFlashbar.pushMessage(`Failed To Save: ${ event.title.length > 20 ? event.title.slice(20) + '...' : event.title}`);
@@ -137,7 +132,7 @@ export class TodoComponent implements OnInit {
   onCancel(event: number): void {
 
     if (event === null) {
-      this.addingNewTodoItem = false;
+      this.closeNewTodoItemForm();
       this.resetNewTodoItem();
     }
   }

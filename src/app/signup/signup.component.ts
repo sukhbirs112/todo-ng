@@ -36,7 +36,6 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.http.get('http://localhost:8080/api/').subscribe((res) => { console.log(res); });
     this.csrf.loadCSRF();
   }
 
@@ -45,13 +44,9 @@ export class SignupComponent implements OnInit {
   }
 
   onButtonClick(): void {
-    console.log('On Submit');
-    console.log(`${this.credentials.username} ${this.credentials.password}`);
     this.submitSignupForm().subscribe((res: ServerResponse) => {
-      console.log(res);
       if (res.success) {
         // Redirect to login page
-        console.log('success');
         this.message = `Your account was successfully created. 
           You will be directed to the login page shortly. 
           If you are not directed there automatically, you may click the button below.`;
@@ -59,7 +54,6 @@ export class SignupComponent implements OnInit {
       }
       else {
         // modify flash bar
-        console.log('failure');
         this.message = res.msg;
       }
     });
