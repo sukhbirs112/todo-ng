@@ -1,27 +1,11 @@
 # Todoapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
+A simple web application for creating a user account and creating todo items.
+The application is meant to be used with the webserver in the repo 'todo-node' and a postgresql database.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Notes
+The web application has a feature which shows an animated message to the user (see the floating-flashbar component). The message details the latest action to be performed on a todo item.
+For example, "<Title of Todo Item> was Successfully Saved/Deleted". This was the more challenging and fun component to develop from scratch as it
+required the development of a queue which would store several actions in order of completetion which would be shown one by one to the user.
+ 
+ 
